@@ -1,0 +1,51 @@
+{'node': 319347, 'nd': 397853, 'bounds': 1, 'member': 5066, 'tag': 118598, 'relation': 600, 'way': 51319, 'osm': 1}
+
+node:
+"A node is one of the core elements in the OpenStreetMap data model.
+It consists of a single point in space defined by its latitude, longitude and node id."
+There can also be optional altitude attribute. Nodes can have tag children that describe
+a feature of the point, or can be part of a path.
+
+nd:
+This is a reference to a node, often used to associate nodes with paths.
+
+bounds:
+This is the bound of the dataset that is being used.
+
+member:
+This associates a node or way with a relation.
+
+tag:
+associates a specific value with a key. You can use this to literally tag places with values.
+
+relation:
+An associated of nodes and ways.
+
+way:
+A path of nodes.
+
+osm:
+Just the top level osm file.
+
+
+Scanning the data for for tags that have problem characters.
+I did not account for certain patterns so we need to evaluate whether those tag keys are ok, or if we need to change them.
+{
+    'lower': 108157,
+    'lower_colon': 7423,
+    'other': 3018,
+    'problemchars': 0
+}
+
+The set of keys that fell into the 'other' character.
+set(['FIXME',
+     'canvec:CODE',
+     'currency:CAD',
+     'currency:XBT',
+     'fuel:HGV_diesel',
+     'fuel:e10',
+     'fuel:octane_100',
+     'geobase:acquisitionTechnique',
+     'geobase:datasetName',
+     'seamark:calling-in_point:channel',
+     'seamark:calling-in_point:traffic_flow'])

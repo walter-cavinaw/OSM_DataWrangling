@@ -1,0 +1,12 @@
+header {
+    border-bottom: solid 1px #A12727;
+    height: 81px;
+}
+
+header h1{
+    font-size: 35px;
+}
+
+header h2 {
+    color: #FDD2D2;
+}
