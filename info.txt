@@ -37,7 +37,7 @@ I did not account for certain patterns so we need to evaluate whether those tag 
     'problemchars': 0
 }
 
-The set of keys that fell into the 'other' character.
+The set of keys that fell into the 'other' character. We need to handle these somehow.
 set(['FIXME',
      'canvec:CODE',
      'currency:CAD',
@@ -49,3 +49,19 @@ set(['FIXME',
      'geobase:datasetName',
      'seamark:calling-in_point:channel',
      'seamark:calling-in_point:traffic_flow'])
+
+
+The address street names that did not match anything.
+[('Rd.', set(['Boundary Rd.'])),
+ ('3305', set(['Expo Blvd, #3305'])),
+ ('West', set(['2nd Street West'])),
+ ('Kingsway', set(['Kingsway'])),
+ ('St.', set(['Mainland St.', 'Seymour St.'])),
+ ('St', set([' Beatty St', 'Robson St', 'Whitchurch St', 'Yew St'])),
+ ('Terminal', set(['Station Terminal'])),
+ ('Vancouver', set(['Howe St. Vancouver', 'W. Hastings St. Vancouver'])),
+ ('Ave', set(['West 3rd Ave', 'West 41st Ave'])),
+ ('Blvd', set(['University Blvd'])),
+ ('Pender', set(['463 West Pender'])),
+ ('East', set(['29th Avenue East'])),
+ ('South', set(['East Kent Avenue South']))]

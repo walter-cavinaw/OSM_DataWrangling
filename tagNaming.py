@@ -30,7 +30,7 @@ def key_type(element, keys, other):
     return keys
 
 
-def process_map(filename):
+def process_field_names(filename):
     other = set()
     keys = {"lower": 0, "lower_colon": 0, "problemchars": 0, "other": 0}
     for _, element in ET.iterparse(filename):
@@ -40,6 +40,6 @@ def process_map(filename):
 
 
 if __name__ == "__main__":
-    keys, other_keys = process_map("../vancouver_canada.osm")
+    keys, other_keys = process_field_names("../vancouver_canada.osm")
     pprint.pprint(keys)
     pprint.pprint(other_keys)
