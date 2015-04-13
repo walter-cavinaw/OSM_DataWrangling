@@ -14,10 +14,11 @@ lower_colon = re.compile(r'^([a-z]|_|[1-9])*(:([a-z]|_|[1-9])*)+$')
 problemchars = re.compile(r'^([a-z]|_|[1-9])*[\?\.\$\^!@#%\*]+([a-z]|_|[1-9])*$')
 
 
-def key_type(element, keys, other):
+def key_type(element, keys, other, lower_c):
     if element.tag == "tag":
         key = element.attrib['k']
         if re.match(lower_colon, key):
+            lower_c.add(key)
             keys['lower_colon'] += 1
         elif re.match(problemchars, key):
             keys['problemchars'] += 1
@@ -32,14 +33,15 @@ def key_type(element, keys, other):
 
 def process_field_names(filename):
     other = set()
+    lower_c = set()
     keys = {"lower": 0, "lower_colon": 0, "problemchars": 0, "other": 0}
     for _, element in ET.iterparse(filename):
-        keys = key_type(element, keys, other)
+        keys = key_type(element, keys, other, lower_c)
 
-    return keys, other
+    return keys, other, lower_c
 
 
 if __name__ == "__main__":
-    keys, other_keys = process_field_names("../vancouver_canada.osm")
+    keys, other_keys, lower_keys = process_field_names("../vancouver_canada.osm")
     pprint.pprint(keys)
-    pprint.pprint(other_keys)
+    pprint.pprint(lower_keys)
