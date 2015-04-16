@@ -183,6 +183,7 @@ set(['access:non_dancers',
      'wetap:status'])
 
 The set of keys that fell into the 'other' character. We need to handle these somehow.
+We can just make all dashes to underscore and uppercase to lower case.
 set(['FIXME',
      'canvec:CODE',
      'currency:CAD',
@@ -196,7 +197,8 @@ set(['FIXME',
      'seamark:calling-in_point:traffic_flow'])
 
 
-The address street names that did not match anything.
+
+The address street names that did not match anything. We will edit these by hand.
 [('Rd.', set(['Boundary Rd.'])),
  ('3305', set(['Expo Blvd, #3305'])),
  ('West', set(['2nd Street West'])),
@@ -212,3 +214,8 @@ The address street names that did not match anything.
  ('South', set(['East Kent Avenue South']))]
 
  Postal codes have spaces between them!
+
+there are 371266 total documents/elements. 1708 have addresses.
+there are 319347 nodes in total. 1145 have addresses.
+there are 50768+551 ways in total. 551 have addresses.
+there are 588+12 relation in total. 12 with addresses.

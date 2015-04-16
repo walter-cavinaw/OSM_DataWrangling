@@ -9,9 +9,9 @@ MongoDB does not accept certain characters in field names.
 """
 
 
-lower = re.compile(r'^([a-z]|_|[1-9])*$')
-lower_colon = re.compile(r'^([a-z]|_|[1-9])*(:([a-z]|_|[1-9])*)+$')
-problemchars = re.compile(r'^([a-z]|_|[1-9])*[\?\.\$\^!@#%\*]+([a-z]|_|[1-9])*$')
+lower = re.compile(r'^([a-z]|_|-|[A-Z]|[0-9])*$')
+lower_colon = re.compile(r'^([a-z]|_|-|[A-Z]|[0-9])*(:([a-z]|_|-|[A-Z]|[0-9])*)+$')
+problemchars = re.compile(r'^([a-z]|_|-|[A-Z]|[0-9])*[\?\.\$\^!@#%\*]+([a-z]|_|-|[A-Z]|[0-9])*$')
 
 
 def key_type(element, keys, other, lower_c):
@@ -43,5 +43,4 @@ def process_field_names(filename):
 
 if __name__ == "__main__":
     keys, other_keys, lower_keys = process_field_names("../vancouver_canada.osm")
-    pprint.pprint(keys)
-    pprint.pprint(lower_keys)
+    pprint.pprint(other_keys)
