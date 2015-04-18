@@ -214,8 +214,10 @@ The address street names that did not match anything. We will edit these by hand
  ('South', set(['East Kent Avenue South']))]
 
  Postal codes have spaces between them!
+ values are not consistent. Some are lower+upper some are just lower case.
 
 there are 371266 total documents/elements. 1708 have addresses.
 there are 319347 nodes in total. 1145 have addresses.
 there are 50768+551 ways in total. 551 have addresses.
 there are 588+12 relation in total. 12 with addresses.
+

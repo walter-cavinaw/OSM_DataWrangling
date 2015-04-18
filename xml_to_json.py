@@ -36,6 +36,8 @@ def update_s_name(value):
 def transform_value(key, value):
     if key == "addr:street":
         value = update_s_name(value)
+    else:
+        value = value.lower()
     return value
 
 

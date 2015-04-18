@@ -1,6 +1,7 @@
 header {
     border-bottom: solid 1px #A12727;
     height: 81px;
+    background: #2e7bcf url(../images/header-bg-red.jpg) 0 0 repeat-x;
 }
 
 header h1{
@@ -9,4 +10,14 @@ header h1{
 
 header h2 {
     color: #FDD2D2;
+}
+
+.chart rect {
+  fill: #b44e42;
+}
+
+.chart text {
+  fill: #000000;
+  font: 12px sans-serif;
+  text-anchor: middle;
 }

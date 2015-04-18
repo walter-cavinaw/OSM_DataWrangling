@@ -19,7 +19,7 @@
 
   <body>
     <header>
-      <div class="inner">
+      <div class="inner-header">
         <h1>Analysing Vancouver OpenStreetMap Data</h1>
           <h2>'Data Wrangling with MongoDB' Project</h2>
         <a href="https://github.com/walter-cavinaw/OSM_DataWrangling" class="button"><small>View project on</small> GitHub</a>
@@ -28,7 +28,24 @@
 
     <div id="content-wrapper">
       <div id="answers" class="inner clearfix">
+          <h2>
+              Overview of the data set
+          </h2>
+          <p>
+              I chose Vancouver as my point of analysis, primarily because it is where I have spent most of my life.
+              The OpenStreetMap xml file is 70.5 MB in total.
+          </p>
+          <p>
+              There were hundreds of contributors. The most prominent contributors and their number of contributions are
+              shown below.
+          </p>
+          <p><svg class="chart"></svg></p>
       </div>
     </div>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="javascript/charts.js"></script>
+  <script>
+      init_user_chart();
+  </script>
   </body>
 </html>
