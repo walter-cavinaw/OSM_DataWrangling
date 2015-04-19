@@ -221,3 +221,8 @@ there are 319347 nodes in total. 1145 have addresses.
 there are 50768+551 ways in total. 551 have addresses.
 there are 588+12 relation in total. 12 with addresses.
 
+TODO:
+plot the amenities to show geographic density of amenities.
+fix the postal codes.
+put a query in the user chart.
+

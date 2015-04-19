@@ -32,20 +32,39 @@
               Overview of the data set
           </h2>
           <p>
-              I chose Vancouver as my point of analysis, primarily because it is where I have spent most of my life.
-              The OpenStreetMap xml file is 70.5 MB in total.
+              I chose the Vancouver Canada region as my dataset because I have spent most of my life here.
+              The OpenStreetMap xml file of Vancouver is 70.5 MB in size.
           </p>
           <p>
-              There were hundreds of contributors. The most prominent contributors and their number of contributions are
-              shown below.
+              There were hundreds of contributors. The most prominent contributors, their number of contributions, and the percent
+              of contributions they made are shown in the chart below:
           </p>
-          <p><svg class="chart"></svg></p>
+          <p><svg class="user-chart"></svg></p>
+          <p>
+              <svg class="elem-chart"></svg>
+              The xml elements that had to be parsed from the dataset were nodes, ways, relations, tags, members and nd's. These
+              were present in the following proportion:
+              <ul>
+                <li class="node">nodes : 319347</li>
+                <li class="nd">nd's : 397853</li>
+                <li class="tag">tags: 118598</li>
+                <li class="way">ways: 51319</li>
+                <li class="member">members: 5066</li>
+                <li class="relation">relations: 600</li>
+              </ul>
+              After parsing all of the top level elements and inserting them into the MongoDB instance,
+              there were __ documents which correspond to either a node, way or relation.
+          </p>
+          <h2>
+            Problems with the data
+          </h2>
       </div>
     </div>
   <script src="http://d3js.org/d3.v3.min.js"></script>
   <script src="javascript/charts.js"></script>
   <script>
       init_user_chart();
+      init_elem_chart();
   </script>
   </body>
 </html>
