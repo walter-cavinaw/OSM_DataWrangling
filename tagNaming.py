@@ -8,7 +8,7 @@ We need to check here if there are any problematic characters in the key attribu
 MongoDB does not accept certain characters in field names.
 """
 
-
+# The regular expressions to match against
 lower = re.compile(r'^([a-z]|_|-|[A-Z]|[0-9])*$')
 lower_colon = re.compile(r'^([a-z]|_|-|[A-Z]|[0-9])*(:([a-z]|_|-|[A-Z]|[0-9])*)+$')
 problemchars = re.compile(r'^([a-z]|_|-|[A-Z]|[0-9])*[\?\.\$\^!@#%\*]+([a-z]|_|-|[A-Z]|[0-9])*$')

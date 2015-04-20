@@ -51,12 +51,73 @@
                 <li class="way">ways: 51319</li>
                 <li class="member">members: 5066</li>
                 <li class="relation">relations: 600</li>
+              <div><i style="font-size: 10px">(Note: There are so few relations that they are not visible on the chart)</i></div>
               </ul>
-              After parsing all of the top level elements and inserting them into the MongoDB instance,
-              there were __ documents which correspond to either a node, way or relation.
+              The top level elements were first transformed to json with a file size of 81.9 MB, and then inserted into
+              a mongoDB instance. There were 371266 documents in total, each of which correspond to either a node, way or relation
+              in the OSM data.
+          <pre>
+              > db.elements.aggregate({$group: {_id:"$elem_type", count:{$sum:1}}})
+              {"_id": "relation", "count": 600}
+              {"_id": "way", "count": 51319}
+              {"_id": "node", "count": 319347}
+          </pre>
           </p>
           <h2>
             Problems with the data
+          </h2>
+          <h3>Nested keys</h3>
+          <p>
+              An initial look at the 'tag' elements revealed that there were no problematic characters in the tag key ('k') attributes.
+              However there were a significant number of tags with nested keys. For example:
+              <ul>
+                <li>'seamark:buoy_lateral:shape'</li>
+                <li>'seamark:buoy_lateral:system'</li>
+                <li>'seamark:buoy_special_purpose:colour'</li>
+                <li>'seamark:information'</li>
+                <li>'seamark:light:character'</li>
+                <li>'seamark:light:colour'</li>
+              </ul>
+              These keys had to be handled elegantly to retain the key value pairs, as well as the relation to parent keys.
+              The best solution was to create nested objects, for each of the nested keys. The above example would then become:<br>
+              <pre>...{ seamark: { buoy_lateral: {shape: value,
+...                            system: value},
+...             buoy_special_purpose: {colour: value},
+...             information: value,
+...             light: {character: value,
+...                     colour: value}
+...}</pre><p>
+          <h3>
+          Inconsistent capitalization of values
+          </h3>
+          <p>
+          For simplicity and consistency the keys were modified such that all dashes were replaced with an underscore,
+          and all upper case letters were replaced with lower case letters. The tag values were also modified so that
+          they were represented in lower case form. I did this because the initial data set had both 'Christian' and 'christian'
+          as religious orientations, when these should clearly be the same.
+          </p>
+          <h3>
+              Over abbreviated street names and inconsistent postal code representation
+          </h3>
+          <p>
+              Among the address field, I modified the street names that used abbreviations to use the full word instead. Some
+              streets had the word Vancouver in the street name which is redundant.<br>In Canada,
+              postal codes are represented by a 6 character alphanumeric string, sometimes with a space separating the first 3 from
+              the last 3. For consistency I removed the space from the postal codes that had one. The following query demonstrates
+              the different representations of postal codes, as well as an incorrect code (v6hh 2r5). The incorrect ones can be
+              improved by checking for consecutive letters or numbers and removing one of the two. (The post code alternates between letters
+              and numbers.)
+              <pre>
+          > db.elements.aggregate([{$group:{_id:"$addr.postcode"}},{$limit:5}])
+          {"_id": "v5l 1t7"}
+          {"_id": "v6t 1z3"}
+          {"_id": "v6h2r2"}
+          {"_id": "v6hh 2r5"}
+          {"_id": "v5z1n3"}
+              </pre>
+          </p>
+          <h2>
+              Further exploration of the data
           </h2>
       </div>
     </div>

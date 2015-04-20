@@ -7,7 +7,8 @@ import codecs
 import json
 import string
 """
-
+Here we take the xml data set and convert it to json. Along the way we also modify
+certain values so that logically equivalent values are expressed in equal terms.
 """
 
 lower = re.compile(r'^([a-z]|_|-|[A-Z]|[0-9])*$')
@@ -32,7 +33,7 @@ def update_s_name(value):
         words[-1] = new_s_type
     return " ".join(words)
 
-
+# Add any extra value transformations here, such as street name changes or postal code changes.
 def transform_value(key, value):
     if key == "addr:street":
         value = update_s_name(value)
@@ -41,7 +42,7 @@ def transform_value(key, value):
     return value
 
 
-
+# add the tag key-value pairs to the json objects.
 def add_tags(element, node):
     for tag in element.findall('tag'):
         key = string.replace(tag.attrib['k'].lower(), "-", "_")
@@ -63,6 +64,7 @@ def add_tags(element, node):
             node_i[split_key[-1]] = value
 
 
+#add the meta data attributes to the json objects
 def add_attributes(element, node):
     node['created'] = {}
     for key in element.attrib.keys():
@@ -72,6 +74,7 @@ def add_attributes(element, node):
             node[key] = element.attrib[key]
 
 
+# shape the top level elements.
 def shape_element(element):
     node = {}
     if element.tag == "node" or element.tag == "way" or element.tag == "relation":

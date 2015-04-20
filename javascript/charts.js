@@ -55,6 +55,11 @@ var chart = d3.select(".user-chart")
 
      bar.selectAll("text.axis").call(wrap, barWidth / 2)
     });
+    chart.append("text")
+          .attr("x", 500)
+          .attr("y", 50)
+          .attr("dy", "1.5em")
+          .text(">[{$group:{_id:\"$created.user\",count:{$sum:1}}}, {$sort:{count:-1}}]");
 }
 
 function init_elem_chart() {
@@ -121,11 +126,12 @@ function wrap(text, width) {
       while (word = words.pop()) {
           line.push(word);
           tspan.text(line.join(" "));
-          if (tspan.node().getComputedTextLength() > 2 * width) {
+          if (tspan.node().getComputedTextLength() > 2 * width && width !=0) {
               line.pop();
               tspan.text(line.join(" "));
               line = [word];
               tspan = text.append("tspan").attr("x", width).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+          } else if (width == 0){
           }
       }
   });
