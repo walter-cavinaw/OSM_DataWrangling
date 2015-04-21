@@ -1,0 +1,14 @@
+http://bost.ocks.org/mike/bar/
+  Mike Bostocks site for creating bar charts in D3
+
+http://bl.ocks.org/mbostock/3887235
+  Mike Bostocks example of a pie chart.
+
+https://docs.python.org/2/library/xml.etree.elementtree.html
+  Docs for element Tree
+
+https://wiki.openstreetmap.org/wiki/Main_Page
+  wiki for OSM
+
+https://developers.google.com/maps/documentation/javascript/heatmaplayer
+  google heatmap example and documentation

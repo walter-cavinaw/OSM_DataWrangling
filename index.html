@@ -117,15 +117,42 @@
               </pre>
           </p>
           <h2>
-              Further exploration of the data
+              Ideas for further exploration
           </h2>
+          <h3>
+              Gathering more addresses
+          </h3>
+          <p>
+              While looking at the collection of addresses in the data set, I realized that only a small subset of the nodes
+              actually had an address. There are 319347 nodes in total, but only 1145 have addresses - merely 0.36% of nodes.
+              It would be useful to use a reverse geolocator service to discover the addresses of these places.
+          </p>
+          <h3>
+              Amenity distribution
+          </h3>
+          <p>
+              I was also interested in the distribution of amenities within Vancouver and plotted these on a map. Given the
+              recent acceleration of real estate prices in certain neighbourhoods of Vancouver, I wondered if there was perhaps a
+              correlation to the number of amenities in those neighbourhoods. The west side and downtown Vancouver areas are known
+              to be the most expensive areas of Vancouver. At first glance there does appear to be some correlation between these areas
+              and the density of amenities, but further analysis would be required to confirm a true statistical relationship.
+              <pre>
+          > db.elements.aggregate([{$match:{"amenity":{$gt:""}}},
+                                   {$project:{"amenity": 1, "name": 1, "pos":1}},
+                                   {$out:"amenities"}])
+              </pre>
+              <div id="map-canvas" style="height:400px;width: 800px"></div>
+          </p>
       </div>
     </div>
   <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=visualization&sensor=true_or_false"></script>
   <script src="javascript/charts.js"></script>
+  <script src="javascript/amenity_map.js"></script>
   <script>
       init_user_chart();
       init_elem_chart();
+      google.maps.event.addDomListener(window, 'load', init_goog_map);
   </script>
   </body>
 </html>

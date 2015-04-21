@@ -33,10 +33,34 @@ def update_s_name(value):
         words[-1] = new_s_type
     return " ".join(words)
 
+
+def proper_post_code(values):
+    is_letter = 1
+    for char in values:
+        if is_letter and char.isalpha():
+            yield char
+            is_letter = (is_letter + 1) % 2
+        elif not is_letter and char.isdigit():
+            yield char
+            is_letter = (is_letter + 1) % 2
+
+
+def std_postcode(value):
+    value = value.replace(" ", "")
+    is_letter = True
+    char_gen = proper_post_code(value)
+    value = "".join(char_gen)
+    if value.__len__() != 6:
+        value = ''
+    return value
+
+
 # Add any extra value transformations here, such as street name changes or postal code changes.
 def transform_value(key, value):
     if key == "addr:street":
         value = update_s_name(value)
+    elif key == "addr:postcode":
+        value = std_postcode(value).lower()
     else:
         value = value.lower()
     return value
